@@ -4,11 +4,11 @@ pipeline:
     commands:
       - apt-get update
       - apt-get upgrade -qyy
-      - apt-get  install -qyy build-essential checkinstall zlib1g-dev libssl-dev libmysqlclient-dev libssl-dev libffi-dev libsqlite3-dev libxslt1-dev libjpeg-dev libbz2-dev
+      - apt-get  install -qyy build-essential checkinstall zlib1g-dev libssl-dev libmysqlclient-dev libssl-dev libffi-dev libsqlite3-dev libxslt1-dev libjpeg-dev libbz2-dev auto-apt
       # - apt-get -o APT::Install-Recommends=false -o APT::Install-Suggests=false install -y build-essential checkinstall zlib1g-dev libssl-dev libmysqlclient-dev libssl-dev libffi-dev libsqlite3-dev libxslt1-dev libjpeg-dev libbz2-dev
       - mkdir debug
       - cd debug
-      - ../configure --with-pydebug --enable-optimizations
+      - auto-apt ../configure --with-pydebug --enable-optimizations
       - make
       - make test
       # - ./configure --enable-optimizations
