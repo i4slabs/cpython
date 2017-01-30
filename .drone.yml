@@ -2,6 +2,8 @@ pipeline:
   build:
     image: ubuntu:xenial
     commands:
+      - export
+      - whoami
       - apt-get update
       - apt-get upgrade -qyy
       #- apt-get  install -qyy build-essential checkinstall zlib1g-dev libssl-dev libmysqlclient-dev libssl-dev libffi-dev libsqlite3-dev libxslt1-dev libjpeg-dev libbz2-dev
