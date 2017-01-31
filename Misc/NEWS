@@ -326,10 +326,13 @@ Library
 
 - Issue #28752: Restored the __reduce__() methods of datetime objects.
 
-- Issue #28727: Regular expression patterns, _sre.SRE_Pattern objects created
-  by re.compile(), become comparable (only x==y and x!=y operators). This
-  change should fix the issue #18383: don't duplicate warning filters when the
-  warnings module is reloaded (thing usually only done in unit tests).
+Documentation
+-------------
+
+- Issue #29349: Fix Python 2 syntax in code for building the documentation.
+
+Tests
+-----
 
 - Issue #20572: Remove the subprocess.Popen.wait endtime parameter.  It was
   deprecated in 3.4 and undocumented prior to that.
