@@ -2,24 +2,24 @@ pipeline:
   build:
     image: ubuntu:xenial
     commands:
-      - export WORKSPACE=`pwd`
+      - export WORKSPACE=$PWD
       - export BUILD_DIR=$WORKSPACE/build
       - export ARTIFACTS_DIR=${WORKSPACE}/${BUILD_DIR}/artifacts
-      - apt-get update
-      - apt-get upgrade -qyy
-      - apt-get -o APT::Install-Recommends=false -o APT::Install-Suggests=false install -y build-essential checkinstall zlib1g-dev libssl-dev libmysqlclient-dev libssl-dev libffi-dev libsqlite3-dev libxslt1-dev libjpeg-dev libbz2-dev python3-minimal
-      - mkdir -p ${BUILD_DIR} ${ARTIFACTS_DIR}
-      - cd ${BUILD_DIR}
-      - ../configure --enable-optimizations
-      - make -j2
-      - checkinstall -D -y --pkggroup ${DRONE_REPO_OWNER} --pkgname ${DRONE_REPO_NAME}  --pkgversion ${DRONE_COMMIT_BRANCH} --pkgsource ${DRONE_REPO_LINK} --pkgaltsource https://www.python.org/ftp/python/ --maintainer ${DRONE_REPO_OWNER} --nodoc --install=no --showinstall=no --pakdir ${ARTIFACTS_DIR}
-
-  s3:
-    image: plugins/s3
-    acl: public-read
-    region: eu-west-1
-    bucket: tf-secdevops-drone
-    source: ${ARTIFACTS_DIR}
-    target: /${DRONE_REPO_NAME}/${DRONE_COMMIT_BRANCH}/ubuntu/xenial/
-    recursive: true
-    strip_prefix: ${ARTIFACTS_DIR}
+  #     - apt-get update
+  #     - apt-get upgrade -qyy
+  #     - apt-get -o APT::Install-Recommends=false -o APT::Install-Suggests=false install -y build-essential checkinstall zlib1g-dev libssl-dev libmysqlclient-dev libssl-dev libffi-dev libsqlite3-dev libxslt1-dev libjpeg-dev libbz2-dev python3-minimal
+  #     - mkdir -p ${BUILD_DIR} ${ARTIFACTS_DIR}
+  #     - cd ${BUILD_DIR}
+  #     - ../configure --enable-optimizations
+  #     - make -j2
+  #     - checkinstall -D -y --pkggroup ${DRONE_REPO_OWNER} --pkgname ${DRONE_REPO_NAME}  --pkgversion ${DRONE_COMMIT_BRANCH} --pkgsource ${DRONE_REPO_LINK} --pkgaltsource https://www.python.org/ftp/python/ --maintainer ${DRONE_REPO_OWNER} --nodoc --install=no --showinstall=no --pakdir ${ARTIFACTS_DIR}
+  #
+  # s3:
+  #   image: plugins/s3
+  #   acl: public-read
+  #   region: eu-west-1
+  #   bucket: tf-secdevops-drone
+  #   source: ${ARTIFACTS_DIR}
+  #   target: /${DRONE_REPO_NAME}/${DRONE_COMMIT_BRANCH}/ubuntu/xenial/
+  #   recursive: true
+  #   strip_prefix: ${ARTIFACTS_DIR}
