@@ -2,7 +2,7 @@ pipeline:
   build:
     image: ubuntu:xenial
     commands:
-      - export WORKSPACE=${PWD}
+      - export WORKSPACE=`pwd`
       - export BUILD_DIR=${WORKSPACE}/build
       - export ARTIFACTS_DIR=${WORKSPACE}/${BUILD_DIR}/artifacts
       - apt-get update
