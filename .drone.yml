@@ -2,9 +2,9 @@ pipeline:
   build:
     image: ubuntu:xenial
     commands:
-      - export WORKSPACE='${PWD}'
-      - export BUILD_DIR='${WORKSPACE}/build'
-      - export ARTIFACTS_DIR='${WORKSPACE}/${BUILD_DIR}/artifacts'
+      - export WORKSPACE=${PWD}
+      - export BUILD_DIR=${WORKSPACE}/build
+      - export ARTIFACTS_DIR=${WORKSPACE}/${BUILD_DIR}/artifacts
       - apt-get update
       - apt-get upgrade -qyy
       - apt-get -o APT::Install-Recommends=false -o APT::Install-Suggests=false install -y build-essential checkinstall zlib1g-dev libssl-dev libmysqlclient-dev libssl-dev libffi-dev libsqlite3-dev libxslt1-dev libjpeg-dev libbz2-dev python3-minimal
