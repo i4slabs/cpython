@@ -4,10 +4,9 @@ pipeline:
     commands:
       - apt-get update
       - apt-get upgrade -qyy
-      - apt-get -o APT::Install-Recommends=false -o APT::Install-Suggests=false install -y build-essential checkinstall zlib1g-dev libssl-dev libmysqlclient-dev libssl-dev libffi-dev libsqlite3-dev libxslt1-dev libjpeg-dev libbz2-dev python3
+      - apt-get -o APT::Install-Recommends=false -o APT::Install-Suggests=false install -y build-essential checkinstall zlib1g-dev libssl-dev libmysqlclient-dev libssl-dev libffi-dev libsqlite3-dev libxslt1-dev libjpeg-dev libbz2-dev python3-minimal
       - ./configure
       - make -j4
-      - make test
       - checkinstall -D -y --pkggroup secdevops-vats --pkgname python --pkgversion 3.6 --pkgsource https://github.com/i4slabs/cpython/tree/3.6 --pkgaltsource https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz --maintainer I4S --nodoc --install=no --showinstall=no
 
   s3:
